@@ -1,0 +1,65 @@
+.img-small {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.img-large {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.hover-container {
+    height: 600px;
+    position: relative;
+}
+.hover-card {
+    text-align: center;
+    margin: 0;
+    width: 30%;
+    height: 400px;
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    border-radius: 5%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.hover-card-img {
+    margin: 0 auto;
+    justify-content: flex-end;
+}
+.green-btn {
+    font-size: 50px;
+    top: -0.2em;
+    color: green;
+}
+.status-div {
+    margin: 0 auto;
+    padding: 10px;
+    width: 150px;
+    background-color: #feb23e;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.plan-status {
+    margin-top: 10px;
+    padding-left: 10%;
+    text-align: left;
+}
+.progress {
+    margin-left: 10%;
+    height: 5px;
+}
+.progress-bar {
+    background-color: #feb23e;
+    width: 50%;
+}
+.dropdown-item {
+    cursor: pointer;
+}
+.initial-msg {
+    position: relative;
+    top: 15vh;
+}
