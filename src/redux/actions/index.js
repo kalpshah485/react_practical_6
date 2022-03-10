@@ -1,33 +1,47 @@
 import { v4 as uuidv4 } from 'uuid';
-export const fetchUsers = (num) => {
+export const fetchUsers = (page_num) => {
     return async (dispatch) => {
-        const res = await fetch('https://reqres.in/api/users?page=1');
-        let users = await res.json();
-        users.data.forEach((user, index) => {
-            console.log(typeof index);
-            user.id = uuidv4();
-            if (Math.random() >= 0.5) {
-                user.status = "Active";
-            } else {
-                user.status = "Inactive";
-            }
-            if (index === 0) {
-                user.status = "Active";
-                user.role = "Owner";
-            } else {
+        try {
+            dispatch(loading(true));
+            const res = await fetch(`https://reqres.in/api/users?page=${page_num}`);
+            let res_data = await res.json();
+            dispatch(pagination(res_data.page, res_data.total_pages));
+            console.log(res_data);
+            res_data.data.forEach((user, index) => {
+                user.id = uuidv4();
                 if (Math.random() >= 0.5) {
-                    user.role = "Read";
+                    user.status = "Active";
                 } else {
-                    user.role = "Manager";
+                    user.status = "Inactive";
                 }
-            }
-        })
-        dispatch({ type: 'FETCH_USERS', payload: users.data });
+                if (index === 0) {
+                    user.status = "Active";
+                    user.role = "Owner";
+                } else {
+                    if (Math.random() >= 0.5) {
+                        user.role = "Read";
+                    } else {
+                        user.role = "Manager";
+                    }
+                }
+            })
+            dispatch(fetchUsersData(res_data.data));
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            setTimeout(() => dispatch(loading(false)), 500);
+        }
     }
 }
-// export const loaded = () => {
-//     return {type: 'LOADED',task: false}
-// }
+export const loading = (flag) => {
+    return { type: 'LOADING', payload: flag }
+}
+export const pagination = (curPage, total_pages) => {
+    return { type: 'PAGE_STATUS', payload: { curPage, total_pages } };
+}
+export const fetchUsersData = (users) => {
+    return { type: 'FETCH_USERS', payload: users }
+}
 export const updateStatus = (user, status) => {
     return { type: 'UPDATE_STATUS', payload: { id: user.id, status: status } }
 }

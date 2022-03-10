@@ -2,6 +2,7 @@
 var initialState = {
     loading: true,
     selectedUser: null,
+    pagination: null,
     users: [
         // {
         //     id: uuidv4(),
@@ -115,7 +116,9 @@ var initialState = {
 };
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case "LOADING": return {...state,loading: action.payload};
         case 'FETCH_USERS': return { ...state,users: action.payload};
+        case 'PAGE_STATUS' : return {...state,pagination: action.payload};
         case "ADD_SELECTED_USER": return { ...state, selectedUser: action.payload };
         case "REMOVE_SELECTED_USER": return { ...state, selectedUser: null };
         case "DELETE_USER":

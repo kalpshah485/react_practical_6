@@ -63,3 +63,15 @@
     position: relative;
     top: 15vh;
 }
+.spinner-border {
+    position: fixed;
+    top: 40%;
+}
+.opacity-50 {
+    opacity: 0.5;
+}
+.pagination {
+    position: fixed;
+    top: 80%;
+    left: 50vh;
+}

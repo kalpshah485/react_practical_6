@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [])
+    dispatch(fetchUsers(1));
+  }, []);
   
   return (
     <>
