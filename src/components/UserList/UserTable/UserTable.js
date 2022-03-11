@@ -8,9 +8,9 @@ function UserTable() {
         <table className="table table-borderless mb-0">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Access</th>
+                    <th className="width-400">Name</th>
+                    <th className="width-200">Status</th>
+                    <th className="width-200">Access</th>
                 </tr>
             </thead>
             <tbody>

@@ -14,8 +14,6 @@ function Pagination() {
         }
         setPageList(pages);
     }, [total_pages]);
-    
-    console.log(curPage, total_pages);
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">

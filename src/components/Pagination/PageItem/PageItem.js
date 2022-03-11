@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../../redux/actions';
 
 function PageItem({ value }) {
-    const { curPage } = useSelector(state => state.reducer.pagination);
+    const { curPage, total_pages } = useSelector(state => state.reducer.pagination);
+    const { page_data } = useSelector(state => state.reducer);
     const dispatch = useDispatch();
     return (
         <li className={`page-item ${value === curPage ? 'active' : ''}`}>
-            <button className="page-link" onClick={() => dispatch(fetchUsers(value))} disabled={value === curPage} >{value}</button>
+            <button className="page-link" onClick={() => dispatch(fetchUsers(value, total_pages, page_data))} disabled={value === curPage} >{value}</button>
         </li>
     )
 }

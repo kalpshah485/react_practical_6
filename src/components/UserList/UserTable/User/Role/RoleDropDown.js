@@ -5,8 +5,8 @@ import { updateRole } from '../../../../../redux/actions';
 function RoleDropDown({ user }) {
   const dispatch = useDispatch();
   return (
-    <div className="dropdown">
-      <button className="btn btn-white dropdown-toggle" type="button" id="roleDropDown" data-bs-toggle="dropdown" aria-expanded="false">
+    <div className="dropdown m-0 p-0">
+      <button className="btn btn-white dropdown-toggle m-0 p-0" type="button" id="roleDropDown" data-bs-toggle="dropdown" aria-expanded="false">
         <small>
           {user.role}
         </small>

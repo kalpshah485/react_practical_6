@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../../redux/actions';
 
 function NextBtn({ value }) {
-    const {total_pages} = useSelector(state => state.reducer.pagination);
+    const { total_pages } = useSelector(state => state.reducer.pagination);
+    const { page_data } = useSelector(state => state.reducer);
     const dispatch = useDispatch();
+
     return (
         <li className={`page-item ${value === total_pages ? 'disabled' : ''}`}>
-            <button className="page-link" onClick={() => dispatch(fetchUsers(value + 1))}>Next</button>
+            <button className="page-link" onClick={() => dispatch(fetchUsers(value + 1,total_pages,page_data))}>Next</button>
         </li>
     )
 }
