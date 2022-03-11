@@ -34,7 +34,7 @@ export const fetchUsers = (page_num, total_pages, page_data) => {
             catch (error) {
                 console.log(error.message);
             } finally {
-                setTimeout(() => dispatch(loading(false)), 500);
+                dispatch(loading(false))
             }
         }
     }
