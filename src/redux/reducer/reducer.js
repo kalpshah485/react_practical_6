@@ -2,7 +2,10 @@
 var initialState = {
     loading: true,
     selectedUser: null,
-    pagination: null,
+    pagination: {
+        curPage: null,
+        total_pages: null
+    },
     page_data: [],
     users: []
 };

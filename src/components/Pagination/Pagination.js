@@ -10,7 +10,7 @@ function Pagination() {
     useEffect(() => {
         let pages = [];
         for (let i = 0; i < total_pages; i++) {
-            pages.push(i+1);
+            pages.push(i + 1);
         }
         setPageList(pages);
     }, [total_pages]);

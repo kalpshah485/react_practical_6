@@ -5,10 +5,10 @@ import { fetchUsers } from '../../../redux/actions';
 function PrevBtn({ value }) {
     const dispatch = useDispatch();
     const { total_pages } = useSelector(state => state.reducer.pagination);
-    const { page_data } = useSelector(state => state.reducer);
+    const { page_data, loading } = useSelector(state => state.reducer);
     return (
-        <li className={`page-item ${value === 1 ? 'disabled' : ''}`}>
-            <button className="page-link" onClick={() => dispatch(fetchUsers(value - 1,total_pages,page_data))}>Previous</button>
+        <li className={`page-item ${(loading || value === null || value === 1) ? 'disabled' : ''}`}>
+            <button className="page-link" onClick={() => dispatch(fetchUsers(value - 1, total_pages, page_data))}>Previous</button>
         </li>
     )
 }
