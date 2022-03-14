@@ -1,6 +1,6 @@
 {
   "homepage": "http://kalpshah485.github.io/react_practical_6",
-  "name": "react_practical_5",
+  "name": "react_practical_6",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "react-feather": "^2.0.9",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
+    "react-toastify": "^8.2.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "uuid": "^8.3.2",
