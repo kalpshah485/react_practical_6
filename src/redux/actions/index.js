@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
+
 export const fetchUsers = (page_num, total_pages, page_data) => {
     return async (dispatch) => {
         if (page_data && page_data[page_num - 1]) {
@@ -30,11 +32,19 @@ export const fetchUsers = (page_num, total_pages, page_data) => {
                 dispatch(pagination(res_data.page, res_data.total_pages));
                 dispatch(updatePageData(res_data.data));
                 dispatch(fetchUsersData(res_data.data));
+                toast.success(`page ${page_num} loaded successfully.`,{
+                    autoClose: 2000,
+                    theme: "colored"
+                })
             }
             catch (error) {
                 console.log(error.message);
+                toast.error(error.message,{
+                    autoClose: 2000,
+                    theme: "colored"
+                });
             } finally {
-                dispatch(loading(false))
+                dispatch(loading(false));
             }
         }
     }
