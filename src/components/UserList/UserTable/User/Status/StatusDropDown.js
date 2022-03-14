@@ -5,8 +5,8 @@ import { updateStatus } from '../../../../../redux/actions';
 function StatusDropDown({ user }) {
     const dispatch = useDispatch();
     return (
-        <div className="dropdown">
-            <button className="btn btn-white dropdown-toggle" type="button" id="statusDropDown" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="dropdown m-0 p-0">
+            <button className="btn btn-white dropdown-toggle m-0 p-0" type="button" id="statusDropDown" data-bs-toggle="dropdown" aria-expanded="false">
                 <small>
                     {user.status}
                 </small>

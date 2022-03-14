@@ -1,33 +1,56 @@
 import { v4 as uuidv4 } from 'uuid';
-export const fetchUsers = (num) => {
+export const fetchUsers = (page_num, total_pages, page_data) => {
     return async (dispatch) => {
-        const res = await fetch('https://reqres.in/api/users?page=1');
-        let users = await res.json();
-        users.data.forEach((user, index) => {
-            console.log(typeof index);
-            user.id = uuidv4();
-            if (Math.random() >= 0.5) {
-                user.status = "Active";
-            } else {
-                user.status = "Inactive";
+        if (page_data && page_data[page_num - 1]) {
+            dispatch(pagination(page_num, total_pages));
+            dispatch(fetchUsersData(page_data[page_num - 1]));
+        } else {
+            try {
+                dispatch(loading(true));
+                const res = await fetch(`https://reqres.in/api/users?page=${page_num}`);
+                let res_data = await res.json();
+                res_data.data.forEach((user, index) => {
+                    user.id = uuidv4();
+                    if (Math.random() >= 0.5) {
+                        user.status = "Active";
+                    } else {
+                        user.status = "Inactive";
+                    }
+                    if (index === 0) {
+                        user.status = "Active";
+                        user.role = "Owner";
+                    } else {
+                        if (Math.random() >= 0.5) {
+                            user.role = "Read";
+                        } else {
+                            user.role = "Manager";
+                        }
+                    }
+                });
+                dispatch(pagination(res_data.page, res_data.total_pages));
+                dispatch(updatePageData(res_data.data));
+                dispatch(fetchUsersData(res_data.data));
             }
-            if (index === 0) {
-                user.status = "Active";
-                user.role = "Owner";
-            } else {
-                if (Math.random() >= 0.5) {
-                    user.role = "Read";
-                } else {
-                    user.role = "Manager";
-                }
+            catch (error) {
+                console.log(error.message);
+            } finally {
+                dispatch(loading(false))
             }
-        })
-        dispatch({ type: 'FETCH_USERS', payload: users.data });
+        }
     }
 }
-// export const loaded = () => {
-//     return {type: 'LOADED',task: false}
-// }
+export const loading = (flag) => {
+    return { type: 'LOADING', payload: flag }
+}
+export const pagination = (curPage, total_pages) => {
+    return { type: 'PAGE_STATUS', payload: { curPage, total_pages } };
+}
+export const updatePageData = (data) => {
+    return { type: 'UPDATE_PAGE_DATA', payload: data };
+}
+export const fetchUsersData = (users) => {
+    return { type: 'FETCH_USERS', payload: users }
+}
 export const updateStatus = (user, status) => {
     return { type: 'UPDATE_STATUS', payload: { id: user.id, status: status } }
 }

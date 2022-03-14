@@ -5,7 +5,11 @@ import Email from '../Email/Email';
 import Name from '../Name/Name';
 
 function HoverUser() {
+    const { loading } = useSelector(state => state.reducer);
     const user = useSelector(state => state.reducer.selectedUser);
+    if (loading) {
+        return ''        
+    }
     if (user) {
         return (
             <div className="hover-container">
