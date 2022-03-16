@@ -41,6 +41,9 @@ const reducer = (state = initialState, action) => {
                     usersList[index].status = action.payload.status;
                 }
             });
+            if (Object.keys(selectedUser).length === 0) {
+                selectedUser = null;
+            }
             return { ...state, users: usersList, selectedUser: selectedUser };
         case "UPDATE_ROLE":
             let usrList = [...state.users];
