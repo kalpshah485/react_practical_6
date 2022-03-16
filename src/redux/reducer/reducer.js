@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
             return { ...state, users: userList, selectedUser: selectUser };
         case "UPDATE_STATUS":
             let selectedUser = { ...state.selectedUser };
-            if (selectedUser.id === action.payload.id) {
+            if (selectedUser && selectedUser.id === action.payload.id) {
                 selectedUser.status = action.payload.status
             }
             let usersList = [...state.users];
